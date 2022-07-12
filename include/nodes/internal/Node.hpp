@@ -107,21 +107,26 @@ protected:
   /// A data change can result in the node taking more space than before,
   /// so this forces a recalculate + repaint on the affected node.
   void recalculateVisuals() const;
+  
+  /// Propagates empty data to the attached connection.
+  void
+  onDataInvalidated(PortIndex index);
+
+  /// update the graphic part if the size of the embeddedwidget changes
+  void
+  onNodeSizeUpdated();
 
 private:
 
   // addressing
-
   QUuid _uid;
 
   // data
-
   std::unique_ptr<NodeDataModel> _nodeDataModel;
 
   NodeState _nodeState;
 
   // painting
-
   NodeGeometry _nodeGeometry;
 
   std::unique_ptr<NodeGraphicsObject> _nodeGraphicsObject;
